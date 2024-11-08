@@ -2,36 +2,40 @@ require_relative 'Node'
 
 class LinkedList
   attr_accessor :head, :size
+  
   def initialize()
     self.head = nil
+    self.size = 0
   end
 
+  def crawl(size = false)
+    curr = head
+    nodes = 1
+    while yield(curr)
+      curr, nodes = curr.next, nodes + 1
+    end
+    size ? nodes : curr
+  end
   
   def append(value)
-    new_node = Node.new(value)
     if head.nil?
-      @head = new_node
+      @head = Node.new(value)
     else
-      curr = head
-      curr = curr.next if !curr.next.nil?
-      curr.next = new_node
+      tail = crawl { |curr| !curr.next.nil? }
+      tail.next = Node.new(value)
     end
+    @size += 1
   end
 
   def prepend(value)
     new_node = Node.new(value)
     new_node.next = head
     @head = new_node
+    @size += 1
   end
 
   def size
-    nodes = 1
-    curr = head
-    while !curr.next.nil?
-      nodes += 1
-      curr = curr.next
-    end
-    puts nodes
+    puts crawl("nodes") { |curr| !curr.next.nil?}
   end
 
   def get_head
@@ -39,19 +43,16 @@ class LinkedList
   end
 
   def get_tail
-    curr = head
-    while !curr.next.nil?
-      curr = curr.next
-    end
+    curr = crawl {|curr| !curr.next.nil?}
     puts curr.value
   end
 
+
   def display
-    curr = head
-    while curr
+    crawl do |curr|
       print "#{curr.value} -> "
-      curr = curr.next
+      true if !curr.next.nil?
     end
-    puts
+    puts "nil"
   end
 end
