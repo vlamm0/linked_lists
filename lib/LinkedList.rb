@@ -34,6 +34,10 @@ class LinkedList
     puts nodes
   end
 
+  def get_head
+    puts head.value
+  end
+
   def display
     curr = head
     while curr
