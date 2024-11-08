@@ -38,6 +38,14 @@ class LinkedList
     puts head.value
   end
 
+  def get_tail
+    curr = head
+    while !curr.next.nil?
+      curr = curr.next
+    end
+    puts curr.value
+  end
+
   def display
     curr = head
     while curr

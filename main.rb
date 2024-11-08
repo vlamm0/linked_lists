@@ -6,3 +6,6 @@ list.prepend(1)
 list.display
 list.size
 list.get_head
+list.append(3)
+list.display
+list.get_tail
