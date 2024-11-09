@@ -82,4 +82,11 @@ class LinkedList
     end
     puts "nil"
   end
+
+  # points prev to new_node, new_node points to index
+  def insert_at(value, index)
+    new_node = Node.new(value)
+    new_node.next = at(index)
+    at(index-1).next = new_node
+  end
 end
