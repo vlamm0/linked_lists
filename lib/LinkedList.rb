@@ -58,6 +58,14 @@ class LinkedList
     at(size - 2).next = nil
   end
 
+  def contains?(value)
+    curr = crawl do |curr| 
+      break if curr.nil? 
+      curr.value != value
+    end
+    curr ? true : false
+  end
+
   def display
     crawl do |curr|
       print "#{curr.value} -> "

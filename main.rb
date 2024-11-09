@@ -15,6 +15,11 @@ list.prepend("apple")
 list.display
 list.pop
 list.display
+puts list.contains?(2)
+puts list.contains?("apple")
+puts list.contains?(nil)
+puts list.contains?("banana")
+puts list.contains?(4)
 # list.prepend(1)
 # list.display
 # list.size
