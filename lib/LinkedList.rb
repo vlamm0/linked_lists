@@ -8,6 +8,8 @@ class LinkedList
     self.head = nil
   end
 
+  # method to crawl up the list using a condition set by the calling methods with yield
+  # returns desired node or size of list
   def crawl(size = false)
     curr = head
     nodes = 1
@@ -33,23 +35,21 @@ class LinkedList
   end
 
   def size
-    puts crawl("nodes") { |curr| !curr.next.nil?}
     crawl("nodes") { |curr| !curr.next.nil?}
   end
 
   def get_head
-    puts head.value
+    head
   end
 
   def get_tail
     tail = crawl {|curr| !curr.next.nil?}
-    puts tail.value
+    tail
   end
 
   def at(index)
     raise "***index must be positive***" if index < 0
     curr = crawl {|curr, nodes| index >= nodes }
-    puts curr ? curr.value : "index #{index} out of range"
     curr ? curr : "index #{index} out of range"
   end
 
@@ -74,10 +74,11 @@ class LinkedList
     curr ? curr - 1 : nil
   end
 
-  def display
+  # displays value of every node
+  def to_s
     crawl do |curr|
-      print "#{curr.value} -> "
-      true if !curr.next.nil?
+      print "( #{curr.value} ) -> "
+      !curr.next.nil?
     end
     puts "nil"
   end
