@@ -89,4 +89,9 @@ class LinkedList
     new_node.next = at(index)
     at(index-1).next = new_node
   end
+
+  # points prev node to node after index
+  def remove_at(index)
+    at(index-1).next = at(index+1)
+  end
 end
