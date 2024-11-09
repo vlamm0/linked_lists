@@ -1,5 +1,6 @@
 require_relative 'Node'
 
+
 class LinkedList
   attr_accessor :head, :size
 
@@ -33,6 +34,7 @@ class LinkedList
 
   def size
     puts crawl("nodes") { |curr| !curr.next.nil?}
+    crawl("nodes") { |curr| !curr.next.nil?}
   end
 
   def get_head
@@ -40,14 +42,20 @@ class LinkedList
   end
 
   def get_tail
-    curr = crawl {|curr| !curr.next.nil?}
-    puts curr.value
+    tail = crawl {|curr| !curr.next.nil?}
+    puts tail.value
   end
 
   def at(index)
     raise "***index must be positive***" if index < 0
     curr = crawl {|curr, nodes| index >= nodes }
     puts curr ? curr.value : "index #{index} out of range"
+    curr ? curr : "index #{index} out of range"
+  end
+
+  def pop
+    #next to last node
+    at(size - 2).next = nil
   end
 
   def display
