@@ -20,6 +20,10 @@ puts list.contains?("apple")
 puts list.contains?(nil)
 puts list.contains?("banana")
 puts list.contains?(4)
+puts list.find("apple")
+puts list.find(3)
+p list.find(nil)
+p list.find(4)
 # list.prepend(1)
 # list.display
 # list.size

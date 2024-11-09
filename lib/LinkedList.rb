@@ -66,6 +66,14 @@ class LinkedList
     curr ? true : false
   end
 
+  def find(value)
+    curr = crawl("nodes") do |curr|
+      break if curr.nil?
+      curr.value != value
+    end
+    curr ? curr - 1 : nil
+  end
+
   def display
     crawl do |curr|
       print "#{curr.value} -> "
